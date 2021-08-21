@@ -1,5 +1,5 @@
 # Etsy Scraper - Django Web Application
-This image contains a django web application that has 3 pages: [index](#index), [product](#products page), [products](#products page)
+This image contains a django web application that has 3 pages: [index](#index), [product](#products-page), [products](#products-page)
 
 ## Index
 Index contains an input area where the link for a specific Etsy product can be submitted.
