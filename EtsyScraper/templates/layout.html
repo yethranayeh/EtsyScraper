@@ -12,41 +12,47 @@
 <body>
     
     <header>
-        <div class="navbar navbar-expand-sm bg-primary navbar-dark">
-            <div class="container">
-                <a href="{% url 'index' %}" class="navbar-brand">EtsyScraper</a>
-                <ul class="navbar-nav mr-auto">
-                    <li 
-                        {% if request.path == '/' %}
-                        class="nav-item active"
-                        {% else %}
-                        class="nav-item"
-                        {% endif %}                    
-                    >
-                        <a href="{% url 'index' %}" class="nav-link">Home</a>
-                    </li>
-                    <li 
-                    {% if request.path == '/product' %}
-                        class="nav-item active"
-                    {% else %}
-                        class="nav-item"
-                    {% endif %}
-                    >
-                        <a href="{% url 'product' %}" class="nav-link">Product</a>
-                    </li>
-                    <li 
-                    {% if request.path == '/products' %}
-                        class="nav-item active"
-                    {% else %}
-                        class="nav-item"
-                    {% endif %}
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a href="{% url 'index' %}" class="navbar-brand">EtsyScraper</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseNavBar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                    >
-                        <a href="{% url 'products' %}" class="nav-link">Products</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse" id="collapseNavBar">
+                <div class="container">
+                    <ul class="navbar-nav mr-auto">
+                        <li 
+                            {% if request.path == '/' %}
+                            class="nav-item active"
+                            {% else %}
+                            class="nav-item"
+                            {% endif %}                    
+                        >
+                            <a href="{% url 'index' %}" class="nav-link">Home</a>
+                        </li>
+                        <li 
+                        {% if request.path == '/product' %}
+                            class="nav-item active"
+                        {% else %}
+                            class="nav-item"
+                        {% endif %}
+                        >
+                            <a href="{% url 'product' %}" class="nav-link">Product</a>
+                        </li>
+                        <li 
+                        {% if request.path == '/products' %}
+                            class="nav-item active"
+                        {% else %}
+                            class="nav-item"
+                        {% endif %}
+
+                        >
+                            <a href="{% url 'products' %}" class="nav-link">Products</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
 
     <main>
@@ -70,7 +76,7 @@
         <div class="footer py-3 mt-3">
             <div class="container">
                 <span class="text-muted">
-                    Prepared for Sociality.io Back-End Developer Internship Application
+                    Prepared for Back-End Developer Internship Application
                 </span>
             </div>
         </div>

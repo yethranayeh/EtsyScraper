@@ -1,1 +1,16 @@
 venv
+venv/
+test
+test/
+.venv/
+**/*.pyc
+**/*.pyo
+**/*.log
+**/__pycache__
+docs/_build
+**/.pynb_checkpoints
+.mypy_cache/
+.pytest_cache/
+.tox/
+**/*.egg-info
+pip-wheel-metadata/

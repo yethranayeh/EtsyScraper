@@ -126,3 +126,6 @@ dmypy.json
 
 # Start commands for Docker
 start.sh
+
+# test folder
+test/
