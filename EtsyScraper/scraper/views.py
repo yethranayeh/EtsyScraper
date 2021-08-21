@@ -37,10 +37,14 @@ def index(request):
             price = soup.find("div", {"class":"wt-order-xs-1 wt-mb-xs-0 wt-mb-sm-3"}).text.strip()
         price = price.split()[-1].replace("£", "").replace("+", "")
 
+        # TODO: assign actual ID numbers when adding to database
+        id_num = 243
+        
         if product_name is not None:
             if img is not None:
                 if price is not None:
                     messages.add_message(request, messages.SUCCESS, f"Product: [ {product_name} ] is successfully added!")
+                    messages.add_message(request, messages.INFO, f'You can check the product with the ID Number: {id_num} in Product page.')
                 else:
                     messages.add_message(request, messages.ERROR, "There was a problem with retrieving product price")
             else:
