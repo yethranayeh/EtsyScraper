@@ -56,6 +56,10 @@ def index(request):
                         etsy_product.sold_out = True
                     etsy_product.save()
 
+                    # The print function below is to satisfy the back-end requirement for:
+                    # > Adding Product Function: Gets the product link as an input, scraps the data from the website, saves the data to the database, and returns the Product Object (product_id, name, image, price) 
+                    print("Adding Product Function:", etsy_product)
+
                     messages.add_message(request, messages.SUCCESS, f"Product: [ {product_name} ] is successfully added!")
                     messages.add_message(request, messages.INFO, f'You can check the product with the ID Number: {Product.objects.all().last().id} in Product page.')
                 else:
@@ -75,7 +79,11 @@ def product(request):
         # print("requested id:", product_id)
         try:
             product = Product.objects.get(pk=product_id)
-            # print("returned:", product)
+
+            # The print function below is to satisfy the back-end requirement for:
+            # > Product Detail Function: Gets the product_id as input and returns the Product Object (product_id, name, image, price)
+            print("Product Detail Function:", product)
+
             return render(
                 request,
                 "scraper/product.html",
@@ -93,6 +101,13 @@ def product(request):
 
 def products(request):
     products = Product.objects.all()
+
+
+    # The print function below is to satisfy the back-end requirement for:
+    # > Product Detail Function: Gets the product_id as input and returns the Product Object (product_id, name, image, price)
+    print("Product Detail Function:", products)
+
+
     return render(
         request, 
         "scraper/products.html", 

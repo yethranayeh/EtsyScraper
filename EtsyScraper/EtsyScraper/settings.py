@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-43$jleiud%4$ci($vx5zlotgqi1=&yvnj@sp_g7y_f$fyw0(-z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# I LEFT DEBUG ON Because Django stopped serving local static files, and I don't know how to handle that with online servers
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
 
 
 # Application definition
