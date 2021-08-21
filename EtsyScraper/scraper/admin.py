@@ -1,11 +1,11 @@
 from django.contrib import admin
 from .models import Product
 
-class MovieAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     # Displays id, name, created_date as columns in panel
-    list_display = ("id", "product_id", "name", "price")
+    list_display = ("id", "name", "price", "sold_out")
     # makes "id" and "name" entries clickable
-    list_display_links = ("id", "product_id", "name")
+    list_display_links = ("id", "name")
     # creates filter by column feature
     list_filter = ("name", "price",)
 
@@ -17,4 +17,4 @@ class MovieAdmin(admin.ModelAdmin):
 
 # Register your models here.
 
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)

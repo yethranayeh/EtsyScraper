@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from .models import Product
 
 from bs4 import BeautifulSoup
 import requests
@@ -23,13 +24,15 @@ def index(request):
             img = soup.find("li", {"class":"wt-position-absolute wt-width-full wt-height-full wt-position-top wt-position-left carousel-pane", "data-index":"0"}).find("img").get("src")
         except:
             img = soup.find("div", {"class":"nla-listing-image wt-width-full wt-height-full wt-rounded-01"})
-            # print("!!!!!!!!!!!!!!!")
-            # print("CURRENT IMAGE:", img)
-            # print("!!!!!!!!!!!!!!!")
-            for element in str(img).split("'"):
-                print("ELEMENT:", element)
-                if "http" in element:
-                    img = element
+            if img is not None:
+                for element in str(img).split("'"):
+                    if "http" in element:
+                        img = element
+            else:
+                try:
+                    img = soup.find("img", {"class":"wt-width-full wt-height-full wt-position-absolute wt-object-fit-cover"}).get("src")
+                except:
+                    img = None
 
         try:
             price = soup.find("p", {"class":"wt-text-title-03 wt-mr-xs-2"}).text.strip()
@@ -38,32 +41,60 @@ def index(request):
         price = price.split()[-1].replace("£", "").replace("+", "")
 
         # TODO: assign actual ID numbers when adding to database
-        id_num = 243
         
         if product_name is not None:
             if img is not None:
                 if price is not None:
+                    etsy_product = Product()
+                    etsy_product.name = product_name
+                    etsy_product.image = img
+                    try:
+                        etsy_product.price = float(price)
+                        etsy_product.sold_out = False
+                    except:
+                        etsy_product.price = -1
+                        etsy_product.sold_out = True
+                    etsy_product.save()
+
                     messages.add_message(request, messages.SUCCESS, f"Product: [ {product_name} ] is successfully added!")
-                    messages.add_message(request, messages.INFO, f'You can check the product with the ID Number: {id_num} in Product page.')
+                    messages.add_message(request, messages.INFO, f'You can check the product with the ID Number: {Product.objects.all().last().id} in Product page.')
                 else:
                     messages.add_message(request, messages.ERROR, "There was a problem with retrieving product price")
             else:
                 messages.add_message(request, messages.ERROR, "There was a problem with retrieving image link of the product")
         else:
             messages.add_message(request, messages.ERROR, "There was a problem with retrieving product name")
-        # print("-------")
-        # print(product_name)
-        # print("-------")
-        # print(img)
-        # print("-------")
-        # print(price)
 
         return render(request, 'scraper/index.html')
     else:
         return render(request, 'scraper/index.html')
 
 def product(request):
-    return render(request, "scraper/product.html")
+    if request.method == "POST":
+        product_id = request.POST["product_id"]
+        # print("requested id:", product_id)
+        try:
+            product = Product.objects.get(pk=product_id)
+            # print("returned:", product)
+            return render(
+                request,
+                "scraper/product.html",
+                {"product":product}
+            )
+        except Exception as err:
+            return render(
+                request, 
+                "scraper/product.html",
+                {"wrong_id":product_id}
+                )
+
+    else:
+        return render(request, "scraper/product.html")
 
 def products(request):
-    return render(request, "scraper/products.html")
+    products = Product.objects.all()
+    return render(
+        request, 
+        "scraper/products.html", 
+        {"products" : products}
+        )

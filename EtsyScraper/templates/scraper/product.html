@@ -2,6 +2,78 @@
 
 {% block content %}
 
-<h1>product page</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-8 col-lg-8">
+                {% if product %}
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ product.image }}" alt="" class="card-img">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        {{ product.name }}
+                                    </div>
+                                    <hr>
+                                    
+                                    <p class="card-text"><span class="font-italic">Price:</span>
+                                        {{ product.price }}
+                                    </p>
+                                    <p class="card-text my-auto">
+                                        {% if product.sold_out == True %}
+                                            <small class="text-muted">Sold Out</small>
+                                        {% else %}
+                                            <small>Available</small>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    
+                    <div class="alert alert-warning">
+                        {% if wrong_id %}
+                        <p>
+                            A product with an <span class="font-italic">ID number</span> of <span class="font-weight-bold">{{ wrong_id }}</span> cannot be found in the database. Please make sure you are providing the correct <span class="font-italic">ID number</span>.
+                        </p>
+                        {% else %}
+                        <p>
+                            Please provide the ID of your product.
+                        </p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+        </div>    
+        <div class="col-sm-6 col-md-4 col-lg-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4>Search by Product ID</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'product' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="text" name="product_id" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-light btn-block">Display Product</button>
+                            </div>
+                        </div>
+                    </form>
+                
+                    </div>
+                </div>        
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}

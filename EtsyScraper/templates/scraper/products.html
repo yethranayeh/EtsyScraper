@@ -2,6 +2,47 @@
 
 {% block content %}
 
-<h1>products</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% if products %}
+                {% for product in products %}
+                    <div class="card mb-3">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ product.image }}" alt="" class="card-img">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body">
+                                    <h3 class="card-title">
+                                        {{ product.name }}
+                                    </h3>
+                                    <hr>
+                                    
+                                    <p class="card-text"><span class="font-italic lead">Price:</span>
+                                        {{ product.price }}
+                                    </p>
+                                    <p class="card-text my-auto">
+                                        {% if product.sold_out == True %}
+                                            <small class="text-muted">Sold Out</small>
+                                        {% else %}
+                                            <small>Available</small>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-warning">
+                    <p>
+                        No products found in database.
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 {% endblock %}
