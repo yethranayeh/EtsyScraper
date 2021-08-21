@@ -63,6 +63,8 @@ If you receive a `scripts is disabled on this system` error, enable scripts on y
 
 ## Setup - Docker
 
+**NOTE:** To directly download a pre-built Docker image of this application, head over to my Docker repository [link](https://hub.docker.com/r/yethranayeh/app)
+
 There is also `Dockerfile` and `docker-compose.yml` files available for Docker builds.
 
 - To build without `docker-compose.yml` the `Dockerfile` must be edited to *comment out* Docker-compose parts and enable `/Use without docker-compose/` parts
