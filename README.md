@@ -1,5 +1,5 @@
 # Etsy Scraper - Django Web Application
-This image contains a django web application that has 3 pages: [index](#index), [product](#products-page), [products](#products-page)
+This image contains a django web application that has 3 pages: [index](#index), [product](#product-page), [products](#products-page)
 
 ## Index
 Index contains an input area where the link for a specific Etsy product can be submitted.
@@ -10,9 +10,11 @@ If successful, the page will display an ID number, which can be used to specific
 
 ## Product Page
 Contains an input area for ID to retrieve related product information
+The required ID will be displayed on the index page when an Etsy product link is submitted.
 
 ## Products Page
 Displays all products that are currently stored in the database.
+The products that are sold out will have a price of `-1.00`
 
 
 
