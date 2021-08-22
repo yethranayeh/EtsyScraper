@@ -38,7 +38,7 @@ def index(request):
             price = soup.find("p", {"class":"wt-text-title-03 wt-mr-xs-2"}).text.strip()
         except:
             price = soup.find("div", {"class":"wt-order-xs-1 wt-mb-xs-0 wt-mb-sm-3"}).text.strip()
-        price = price.split()[-1].replace("£", "").replace("+", "")
+        price = price.split()[-1].replace("£", "").replace("TL", "").replace("₺", "").replace("€", "").replace("$", "").replace("+", "")
 
         # TODO: assign actual ID numbers when adding to database
         
