@@ -1,8 +1,8 @@
-# # Better build time
-# FROM python:3.7-slim-stretch
+# Better build time
+FROM python:3.7-slim-stretch
 
 # Smaller image size
-FROM python:3.7-alpine
+# FROM python:3.7-alpine
 
 
 # /USE WITH DOCKER-COMPOSE
