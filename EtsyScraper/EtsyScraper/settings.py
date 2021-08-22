@@ -90,11 +90,17 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'postgres',
 
-        # HOST options
+        #####
+
+        # USE CASE OPTIONS
+
         # For Docker:
-        'HOST': 'db',
+        # 'HOST': 'db',
+
         # For local use,
-        # 'HOST': '127.0.0.1',
+        'HOST': '127.0.0.1',
+
+        #####
 
         'PORT': 5432,
     }
