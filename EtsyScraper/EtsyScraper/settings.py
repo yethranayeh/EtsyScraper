@@ -95,9 +95,9 @@ DATABASES = {
         # USE CASE OPTIONS
 
         # For Docker:
-        # 'HOST': 'db',
+        # 'HOST': 'db', # [MAKE SURE THAT THIS IS THE HOST WHEN USING DOCKER]
 
-        # For local use,
+        # For local use:
         'HOST': '127.0.0.1',
 
         #####
