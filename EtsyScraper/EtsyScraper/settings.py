@@ -85,11 +85,24 @@ WSGI_APPLICATION = 'EtsyScraper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'etsydb',
-        'CLIENT': {
-           'host': 'mongodb+srv://etsyuser:etsyuser123@cluster0.wkxdr.mongodb.net/test',
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+
+        #####
+
+        # USE CASE OPTIONS
+
+        # For Docker:
+        # 'HOST': 'db', # [MAKE SURE THAT THIS IS THE HOST WHEN USING DOCKER]
+
+        # For local use:
+        'HOST': '127.0.0.1',
+
+        #####
+
+        'PORT': 5432,
     }
 }
 
